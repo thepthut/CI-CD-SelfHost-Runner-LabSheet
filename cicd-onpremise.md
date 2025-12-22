@@ -364,7 +364,7 @@ Internet User → Nginx (Port 80/443) → Application (Port 3000)
 - **Proxy Support:** หากมี corporate proxy สามารถ configure ได้
 
 ### ขั้นตอนการทดลอง
-#### ส่วนที่ 1: เตรียม Project และ Repository (15 นาที)
+#### ส่วนที่ 1: เตรียม Project และ Repository
 #### 1.1 สร้าง GitHub Repository (Private)
 
 ⚠️ **คำเตือนสำคัญ:** ต้องเลือก **Private Repository** เท่านั้น เพราะ Self-Hosted Runner ไม่ปลอดภัยกับ Public Repository
@@ -858,7 +858,7 @@ git commit -m "Initial project setup with pull-based architecture"
 # Push to GitHub
 git push origin main
 ```
-**ส่วนที่ 2: ติดตั้ง Self-Hosted Runner (20 นาที)**
+**ส่วนที่ 2: ติดตั้ง Self-Hosted Runner**
 
 💡 หมายเหตุ: Runner จะใช้ Pull-based model ทำการ Polling ไปยัง GitHub API เพื่อรับงาน ไม่ใช่ GitHub Push งานมา
 
@@ -1030,6 +1030,12 @@ sudo apt install -y curl git wget
     - สถานะสีเขียว (Idle) = พร้อมรับงาน ✅
     - สถานะสีเทา (Offline) = ยังไม่ online ❌
 - ถ้าเป็นสีเขียว แสดงว่า runner กำลัง polling อยู่
+  
+  ### บันทึกรูปผลการทดลอง
+  ```
+  บันทึกรูปหน้า Runners โดยคัดลอกให้เห็น Account และ Repository
+  ```
+  
 2. ตรวจสอบจาก Logs:
 ```bash
 # ดู runner logs
@@ -1071,18 +1077,18 @@ tail -f _diag/Runner_*.log
 - ห้าม commit folder ```_work`` เข้า git
 - ถ้าต้องการลบ runner: ใช้ ```./config.sh remove --token YOUR_TOKEN```
 
-### ส่วนที่ 3: สร้าง GitHub Actions Workflow (15 นาที)
+### ส่วนที่ 3: สร้าง GitHub Actions Workflow
 #### 3.1 สร้าง Workflow File
 1. สร้าง directory structure:
 
 ```bash
-# ในโปรเจกต์ของคุณ
+# สร้างโฟลเดอร์ในโปรเจกต์ 
 mkdir -p .github/workflows
 ```
 2. สร้างไฟล์ ```.github/workflows/deploy.yml```
 
 ```yaml
-name: 🚀 Deploy to Self-Hosted Server (Pull-based)
+name: Deploy to Self-Hosted Server (Pull-based)
 
 # Trigger events
 on:
